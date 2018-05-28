@@ -1,0 +1,54 @@
+@import '../../assets/css/_variables';
+
+.points {
+    background: rgb(109, 44, 161);
+    text-align: center;
+    color: white;
+    font-size: 1.8em;
+    text-transform: uppercase;
+    padding: 10px 0;
+    strong {
+        font-size: 4rem;
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
+
+.block-text {
+    p {
+        text-align: center;
+        font-size: 1.6em;
+    }
+}
+
+.form {
+    text-align: center;
+    > .input-form {
+        height: 45px;
+        font-family: $font;
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        border:0;
+        font-size: 16px;
+        color: black;
+        border-radius: 30px;
+        background: rgb(230, 230, 230);
+        box-sizing: border-box;
+        outline: none;
+        &::placeholder {
+            color: black;
+        }
+    }
+    .button-purple {
+        margin-top: 30px;
+    }
+}
+
+.modal-overlay .container {
+    max-width: 400px;
+    @media (max-width: 550px) {
+        max-width: 90%;
+        box-sizing: border-box;
+    }
+}

@@ -1,0 +1,57 @@
+@import '../../assets/css/_variables';
+
+.container-intro {
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    > .ico {
+        margin: 0;
+    }
+    > .title {
+        color: $yellow;
+        font-family: $star;
+        letter-spacing: 2px;
+        font-size: 6rem;
+        line-height: 1;
+        margin: 0px 0 20px;
+    }
+    > .block-description {
+        h4 {
+            font-weight: bold;
+            font-size: 1.8rem;
+            margin: 5px 0 25px;
+        }
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            line-height: 1.4;
+            margin: 10px 0;
+        }
+        .button-outline {
+            margin: 20px 0 0;
+        }
+    }
+    .audio {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    @media (max-width: 800px) {
+        width: 90%;
+        .title {
+            font-size: 4rem;
+        }
+    }
+    @media (max-width: 500px) {
+        .ico {
+            width: 100px;
+        }
+        .title {
+            font-size: 3rem;
+        }
+    }
+}
+

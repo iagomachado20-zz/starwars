@@ -1,0 +1,28 @@
+<div class="container">
+  <header class="main-header">
+    <h1 class="brand">
+      <img src="assets/img/darth.png" alt="StarQuiz">
+      Starquiz
+    </h1>  
+  </header>
+  <table class="table" cellspacing="0" cellpadding="0">
+    <tr class="heading">
+      <td width="100"></td>
+      <td>NOME</td>
+      <td>EMAIL</td>
+      <td>PONTOS</td>
+    </tr>
+    <tr *ngFor="let item of list | orderBy: 'point':true; let i = index">
+      <td class="index">{{i + 1}}</td>
+      <td>{{item.userName}}</td>
+      <td>{{item.userEmail}}</td>
+      <td class="point">{{item.point}}</td>
+    </tr>
+  </table>
+  <footer>
+    <a class="button-outline" routerLink="/">
+      <i class="fas fa-home"></i>
+      Voltar para o Início
+    </a>
+  </footer>
+</div>

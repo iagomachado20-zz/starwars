@@ -1,0 +1,14 @@
+<div class="modal-overlay" [ngClass]="{'active': open}">
+  <div class="container">
+    <button class="fas fa-times" title="Fechar" (click)="closeModal()"></button>
+    <h1 class="title">Details</h1>
+    <div class="info-box">
+      <img [src]="selected?.image" class="picture">
+      <p><strong>Specie:</strong> {{selected?.specie?.name}}</p>
+      <p><strong>Height:</strong> {{selected?.height}}</p>
+      <p><strong>Hair:</strong> {{selected?.hair_color}}</p>
+      <p><strong>Planet:</strong> {{selected?.planet?.name}}
+      <p><strong>Movies:</strong> <span> {{selected?.film?.title}}</span></p>
+    </div>
+  </div>
+</div>

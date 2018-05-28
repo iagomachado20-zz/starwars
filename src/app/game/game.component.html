@@ -1,0 +1,29 @@
+<div class="container">
+  <header class="main-header">
+    <h1 class="brand">
+      <img src="assets/img/darth.png" alt="StarQuiz">
+      Starquiz
+    </h1> 
+    <div class="timer">
+      <i class="far fa-clock"></i>
+      <span [ngClass]="{'active': timeExecuted}">{{count | minuteSeconds}}</span>
+    </div> 
+  </header>
+  <i class="fas fa-spinner" *ngIf="loading"></i>
+  <ul class="list-persons" *ngIf="!finalModal">
+    <li class="card" *ngFor="let item of peoples">
+      <img [src]="item.image" class="image">
+      <div class="info">
+        <input type="text" [disabled]="item.asked" class="input" [placeholder]="item.asked ? item.answerOff : 'Nome do Personagem'"  [(ngModel)]="item.anwser" (blur)="leaveQuestion(item)">
+        <button class="far fa-info" (click)="openDetail(item)"></button>
+      </div>
+    </li>
+  </ul>
+  <footer class="pagination">
+    <button [disabled]="!pagPrev" (click)="pagination(pagPrev)" class="prev button"><i class="fas fa-caret-left"></i> Anterior </button>
+    <button [disabled]="!pagNext" class="prev button" (click)="pagination(pagNext)">
+      Próximo <i class="fas fa-caret-right"></i></button>
+  </footer>
+  <modal-detail [open]="detailModal" (close)="onClose($event)" [selected]="detailPeople"></modal-detail>
+</div>
+<app-modal-final [open]="finalModal" [points]="points" (close)="onClose($event)"></app-modal-final>

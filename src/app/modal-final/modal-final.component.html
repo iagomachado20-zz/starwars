@@ -1,0 +1,23 @@
+<div class="modal-overlay" [ngClass]="{'active': open}">
+  <div class="container">
+    <button class="fas fa-times" title="Fechar" (click)="closeModal()"></button>
+    <h1 class="title">Quiz Finalizado</h1>
+    <header class="points">
+      <strong>{{points}}</strong>pontos
+    </header>
+    <div class="block-text">
+      <p>Preencha o formulário abaixo para salvar sua pontuação:</p>
+    </div>
+    <form class="form" #form="ngForm" (ngSubmit)="saveUser(form)">
+      <input placeholder="Insira seu nome" type="text" name="userName" class="input-form" [ngModel]="user.userName" required #uname="ngModel">
+      <div class="error" *ngIf="uname.errors?.required && form.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 
+			  Campo Nome Obrigatório!
+		   </div>
+      <input placeholder="Insira seu e-mail" type="email" class="input-form" name="userEmail" [ngModel]="user.Email" required #unemail="ngModel">
+      <div class="error" *ngIf="unemail.errors?.required && form.submitted && !isValidFormSubmitted" [ngClass] = "'error'"> 
+			  Campo Email Obrigatório!
+		   </div>
+      <button type="submit" [disabled]="form.invalid" class="button-purple">Salvar</button>
+    </form>
+  </div>
+</div>
