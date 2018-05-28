@@ -62,6 +62,10 @@ export class UtilservicesService {
     
     let users = JSON.parse(localStorage.getItem('users'));
 
+    if (users == null) {
+      users = [];
+    }
+    
     return users;
   }
 
