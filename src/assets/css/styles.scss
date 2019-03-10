@@ -126,61 +126,7 @@
     }
 }
 
-.main-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: black;
-    position: fixed;
-    width: 100%;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    .brand {
-        display: flex;
-        font-family: $star;
-        color: $yellow;
-        margin-left: 1%;
-        align-items: center;
-        font-size: 1.6rem;
-        font-weight: 400;
-        > img {
-            width: 50px;
-            margin-right: 20px;
-            height: auto;
-        }
-    }
-    .timer {
-        background: $yellow;
-        height: 90px;
-        line-height: 90px;
-        overflow: visible;
-        color: black;
-        padding: 0 35px;
-        width: 150px;
-        font-weight: bold;
-        font-size: 2rem;
-        font-family: $star;
-        @media (max-width: 500px) {
-            width: 75px;
-            height: 75px;
-            font-size: 1.8rem;
-            line-height: 75px;
-        }
-        .far {
-            vertical-align: middle;
-            margin-top: 5px;
-        }
-        span {
-            display: inline-block;
-            vertical-align: middle;
-            &.active {
-                animation: clock 0.95s infinite forwards;
-            }
-        }
-    }
-}
+
 
 @keyframes rotate {
     0% {

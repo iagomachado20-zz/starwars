@@ -1,0 +1,8 @@
+<footer class="pagination">
+  <button [disabled]="!page.prev" (click)="setPage(page.prev)" class="prev button">
+    <i class="fas fa-caret-left"></i> Anterior 
+  </button>
+  <button [disabled]="!page.next" class="prev button" (click)="setPage(page.next)">
+    Próximo <i class="fas fa-caret-right"></i>
+  </button>
+</footer>

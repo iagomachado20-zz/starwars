@@ -14,17 +14,13 @@ import { ModalFinalComponent } from './modal-final/modal-final.component';
 import { RankingComponent } from './ranking/ranking.component';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { ComponentsModule } from './components/components.module';
+import { GameService } from './services/game.service';
 
 const routes:Routes = [
-  {
-    path: '', component: StartComponent
-  },
-  {
-    path: 'game', component: GameComponent
-  },
-  {
-    path: 'ranking', component: RankingComponent
-  }
+  { path: '', component: StartComponent },
+  { path: 'game', component: GameComponent },
+  { path: 'ranking', component: RankingComponent }
 ];
 
 @NgModule({
@@ -32,7 +28,6 @@ const routes:Routes = [
     AppComponent,
     StartComponent,
     GameComponent,
-    MinutesecondsPipe,
     ModalDetailComponent,
     ModalFinalComponent,
     RankingComponent
@@ -40,11 +35,12 @@ const routes:Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    ComponentsModule,
     HttpModule,
     OrderModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [UtilservicesService],
+  providers: [ UtilservicesService, GameService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilservicesService } from '../services/utilservices.service';
 import { People, BASE_API } from '../../models';
-import { error } from 'util';
-
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'app-game',
@@ -16,33 +15,29 @@ export class GameComponent implements OnInit {
   loading:boolean = false;
   personsOff:any = [];
   points:number = 0;
-  count:number = 120;
-  timeExecuted = false;
   peoples:People;
   detailPeople;
-  pagPrev:string;
-  pagNext:string;
   detailModal:boolean = false;
-  finalModal:boolean = false;
+  finalModal = false;
 
-  constructor(private service: UtilservicesService) { }
+  constructor(
+    private service: UtilservicesService,
+    private gameService: GameService
+  ) { }
 
   ngOnInit() {
     this.loadPersons(this._urlPeople);
-    this.counterGame();
   }
 
-  counterGame() {
-    this.timeExecuted = true;
-    let loop = setInterval(() => {
-      this.count -= 1;
-      if (this.count == 0) {
-        clearInterval(loop);
-        this.timeExecuted = false;
-        this.finalModal = true;
-      }
+  checkTimeQuiz() {
 
-    }, 1000);
+    this.gameService.isStarted$
+    .subscribe(status => {
+      
+      this.finalModal = status;
+
+    });
+
   }
 
   
@@ -52,9 +47,10 @@ export class GameComponent implements OnInit {
     this.service.loadPeople(url)
     .subscribe((data:any) => {
 
-      this.peoples = data.results;
-
+      this.peoples = data;
       this.loading = false;
+
+      this.checkTimeQuiz();
       
       for(let i=0; i<data.results.length; i++) {
         
@@ -65,8 +61,8 @@ export class GameComponent implements OnInit {
           for (let l = 0; l < this.personsOff.length; l++) {
 
             if (this.personsOff[l].truesend == this.peoples[i].name) {
-              this.peoples[i].asked = true;
-              this.peoples[i].answerOff = this.personsOff[l].send;
+              this.peoples['results'][i].asked = true;
+              this.peoples['results'][i].answerOff = this.personsOff[l].send;
             }
 
           }
@@ -76,13 +72,9 @@ export class GameComponent implements OnInit {
 
         // Insere a imagem conforme o ID do Personagem
         var idImage = this.service.formatUrl(data.results[i].url);
-        this.peoples[i].image = `https://starwars-visualguide.com/assets/img/characters/${idImage}.jpg`;
+        this.peoples['results'][i].image = `https://starwars-visualguide.com/assets/img/characters/${idImage}.jpg`;
 
       }
-      
-      // Aplica o url de paginação recebida do WebService
-      this.pagNext = data.next;
-      this.pagPrev = data.previous;
       
     }, error => console.log(error));
   }
@@ -144,8 +136,5 @@ export class GameComponent implements OnInit {
     this.finalModal = event;
   }
 
-  pagination(url) {
-    this.loadPersons(url);
-  }
 
 }
