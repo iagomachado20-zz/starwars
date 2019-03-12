@@ -1,4 +1,4 @@
-export const BASE_API:string = 'https://swapi.co/api';
+export const BASE_API:string = 'https://swapi.co/api/';
 
 
 export class User {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -7,17 +7,19 @@ import { Component, OnInit, Input, OnChanges } from '@angular/core';
 })
 export class PaginationComponent implements OnChanges {
 
-  @Input() page = {
-    prev: '',
-    next: ''
-  };
+  @Input() page = { prev: '', next: '' };
+  @Output() sendPage = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnChanges() {}
+  ngOnChanges() {
+    console.log(this.page);
+  }
 
-  setPage(url) {
+  setPage(url: string): void {
     
+    this.sendPage.emit(url);
+
   }
 
 }

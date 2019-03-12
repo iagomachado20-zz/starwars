@@ -16,6 +16,7 @@ import { RankingComponent } from './ranking/ranking.component';
 import { OrderModule } from 'ngx-order-pipe';
 import { ComponentsModule } from './components/components.module';
 import { GameService } from './services/game.service';
+import { CrudService } from './services/crud.service';
 
 const routes:Routes = [
   { path: '', component: StartComponent },
@@ -40,7 +41,11 @@ const routes:Routes = [
     OrderModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [ UtilservicesService, GameService ],
+  providers: [ 
+    UtilservicesService, 
+    GameService,
+    CrudService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

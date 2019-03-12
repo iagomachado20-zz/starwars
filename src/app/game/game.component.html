@@ -10,7 +10,7 @@
       </div>
     </li>
   </ul>
-  <app-pagination [page]="{ next: peoples?.next, prev: peoples?.previous }"></app-pagination>
+  <app-pagination (sendPage)="getUrlPagination($event)" [page]="{ next: peoples?.next, prev: peoples?.previous }"></app-pagination>
   <modal-detail [open]="detailModal" (close)="onClose($event)" 
   [selected]="detailPeople"></modal-detail>
 </div>

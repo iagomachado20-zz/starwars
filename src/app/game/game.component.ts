@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtilservicesService } from '../services/utilservices.service';
 import { People, BASE_API } from '../../models';
 import { GameService } from '../services/game.service';
+import { CrudService } from '../services/crud.service';
 
 @Component({
   selector: 'app-game',
@@ -9,8 +10,6 @@ import { GameService } from '../services/game.service';
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent implements OnInit {
-
-  private _urlPeople = `${BASE_API}/people/`;
 
   loading:boolean = false;
   personsOff:any = [];
@@ -22,11 +21,12 @@ export class GameComponent implements OnInit {
 
   constructor(
     private service: UtilservicesService,
-    private gameService: GameService
+    private gameService: GameService,
+    private crud: CrudService
   ) { }
 
   ngOnInit() {
-    this.loadPersons(this._urlPeople);
+    this.loadPersons(`${BASE_API}people`);
   }
 
   checkTimeQuiz() {
@@ -42,10 +42,11 @@ export class GameComponent implements OnInit {
 
   
   loadPersons(url) {
+    
     this.loading = true;
 
-    this.service.loadPeople(url)
-    .subscribe((data:any) => {
+    this.crud.getData(url)
+    .subscribe(data => {
 
       this.peoples = data;
       this.loading = false;
@@ -77,6 +78,12 @@ export class GameComponent implements OnInit {
       }
       
     }, error => console.log(error));
+  }
+
+  getUrlPagination(page) {
+
+    this.loadPersons(page);
+
   }
 
   leaveQuestion(people) {

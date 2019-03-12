@@ -14,4 +14,10 @@ export class GameService {
 
   }
 
+  getPersons() {
+
+    
+
+  }
+
 }
